@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "e5010b11-1814-4a74-bda6-465f91fc84f9",
+		"name": "WorkFlow - Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21087789"
+	},
+	"item": [
+		{
+			"name": "RQ1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Tạo bảng thành công\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Thiếu key hoặc token\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Không nhập name\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"idBoard\",pm.response.json().id);\r",
+							"pm.collectionVariables.set(\"boardName\",pm.response.json().name);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Bài Lab số 11\",\r\n    \"defaultList\":\"false\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/boards?key={{key_lab8}}&token={{token_lab8}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key_lab8}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token_lab8}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RQ2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Tạo list thành công\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Thiếu key hoặc token\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Không nhập name, không đúng idBoard\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"idList1\",pm.response.json().id);\r",
+							"pm.collectionVariables.set(\"nameList1\",pm.response.json().name);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"TODO\",\r\n    \"idBoard\":\"{{idBoard}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/lists?key={{key_lab8}}&token={{token_lab8}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key_lab8}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token_lab8}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RQ2-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Tạo bảng thành công\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Thiếu key hoặc token\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Không nhập name, không đúng idBoard\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"idList2\",pm.response.json().id);\r",
+							"pm.collectionVariables.set(\"nameList2\",pm.response.json().name);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Done\",\r\n    \"idBoard\":\"{{idBoard}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/lists?key={{key_lab8}}&token={{token_lab8}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key_lab8}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token_lab8}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RQ3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Tạo card thành công\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Thiếu key hoặc token\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Không nhập name, không đúng idlist\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"idCard\",pm.response.json().id);\r",
+							"pm.collectionVariables.set(\"nameCard\",pm.response.json().name);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Đang tiến hành\",\r\n    \"idList\":\"{{idList2}}\",\r\n    \"desc\":\"Card trong list1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/cards?key={{key_lab8}}&token={{token_lab8}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"cards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key_lab8}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token_lab8}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RQ4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"update thành công\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Thiếu key hoặc token\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Không thấy cardId\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Name trống, idLisst hoặc idBoard không tìm thấy\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"result = pm.response.json();\r",
+							"num = pm.collectionVariables.get(\"numOfBoard\");\r",
+							"if(num == null){\r",
+							"    pm.collectionVariables.set(\"numOfBoard\",1);\r",
+							"    postman.setNextRequest(\"RQ1\");\r",
+							"}else if(num == 1){\r",
+							"    pm.collectionVariables.set(\"numOfBoard\",2);\r",
+							"    postman.setNextRequest(\"RQ5\");\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Đang tiến hành\",\r\n    \"closed\": false,\r\n    \"idList\":\"{{idList1}}\",\r\n    \"idBoard\":\"{{idBoard}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/cards/{{idCard}}/?key={{key_lab8}}&token={{token_lab8}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"cards",
+						"{{idCard}}",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key_lab8}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token_lab8}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RQ5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"update thành công\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Thiếu key hoặc token\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"userID không tồn tại\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"//DS khi trống, kq trả về là []\r",
+							"\r",
+							"result = pm.response.json();\r",
+							"length = result.length;\r",
+							"if(length > 0 && pm.response.text() != \"[]\"){\r",
+							"    pm.collectionVariables.set(\"firstBoard\",result[0].id);\r",
+							"    postman.setNextRequest(\"RQ6\");\r",
+							"}else{\r",
+							"    postman.setNextRequest(null);\r",
+							"}\r",
+							"pm.collectionVariables.set(\"numOfBoard\",null);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/members/{{username}}/boards?key={{key_lab8}}&token={{token_lab8}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"members",
+						"{{username}}",
+						"boards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key_lab8}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token_lab8}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RQ6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"delete thành công\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Thiếu key hoặc token\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"if(pm.response.code != 200){\r",
+							"    pm.test(\"Các trường hợp khác\");\r",
+							"};\r",
+							"postman.setNextRequest(\"RQ5\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/boards/:idBoard?key={{key_lab8}}&token={{token_lab8}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						":idBoard"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key_lab8}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token_lab8}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "idBoard",
+							"value": "{{firstBoard}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token_lab8",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "key_lab8",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idBoard",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idList1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idList2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "nameCard",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "boardName",
+			"value": ""
+		},
+		{
+			"key": "nameList1",
+			"value": ""
+		},
+		{
+			"key": "nameList2",
+			"value": ""
+		},
+		{
+			"key": "idCard",
+			"value": ""
+		},
+		{
+			"key": "firstBoard",
+			"value": ""
+		},
+		{
+			"key": "numOfBoard",
+			"value": ""
+		}
+	]
+}
